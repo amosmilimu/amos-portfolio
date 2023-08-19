@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import Project, Skill, Blog, Education, Experience, Contact, CV
 
@@ -22,12 +23,12 @@ def index(request):
         message = request.POST['message']
 
         if name == '' or email == '' or subject == '' or message == '':
-            context['error'] = 'Please fill in all fields'
+            messages.error(request, 'Please fill in all fields')
         
         else:
             contact = Contact(name=name, email=email, subject=subject, message=message)
             contact.save()
-            context['success'] = 'Your message has been sent successfully thank you. I will get back to you soon.'
+            messages.success(request, 'Your message has been sent successfully. Thank you. I will get back to you soon.')
         return redirect('index')
 
     else:

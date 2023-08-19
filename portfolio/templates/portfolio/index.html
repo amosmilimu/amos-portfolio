@@ -392,20 +392,28 @@
 									<form action="{% url 'index' %}" method="post">
 										{% csrf_token %}
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name" name="name">
+											<input type="text" class="form-control" placeholder="Name" name="name" required>
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Email" name="email">
+											<input type="text" class="form-control" placeholder="Email" name="email" required>
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Subject" name="subject">
+											<input type="text" class="form-control" placeholder="Subject" name="subject" required>
 										</div>
 										<div class="form-group">
-											<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+											<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
 										</div>
 
 										<div>
-											{% if error != '' %}
+
+											{% if messages %}
+											{% for message in messages %}
+												<div class="alert alert-{{ message.tags }}">
+													{{ message }}
+												</div>
+											{% endfor %}
+											{% endif %}
+											<!-- {% if error != '' %}
 												<div class="alert alert-danger">
 													{{ error }}
 												</div>
@@ -413,7 +421,7 @@
 												<div class="alert alert-success">
 													{{ success }}
 												</div>
-											{% endif %}
+											{% endif %} -->
 										</div>
 
 										<div class="form-group">
