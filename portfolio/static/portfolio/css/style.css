@@ -1427,3 +1427,27 @@ body.offcanvas {
 
 .js .animate-box {
   opacity: 0; }
+
+#messageModal {
+    font-family: Arial, sans-serif;
+}
+
+#modalCloseBtn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+.icon-success {
+  color: #4CAF50; /* Green */
+  content: "\2714"; /* Checkmark */
+  display: inline-block;
+  font-family: 'Arial'; /* Fallback font */
+}

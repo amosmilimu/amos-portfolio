@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .models import Project, Skill, Blog, Education, Experience, Contact, CV
 
 # Create your views here.
@@ -23,13 +24,13 @@ def index(request):
         message = request.POST['message']
 
         if name == '' or email == '' or subject == '' or message == '':
-            messages.error(request, 'Please fill in all fields')
+            return JsonResponse({"status": "error", "message": "Please fill in all fields"}, status=400)
         
         else:
             contact = Contact(name=name, email=email, subject=subject, message=message)
             contact.save()
             messages.success(request, 'Your message has been sent successfully. Thank you. I will get back to you soon.')
-        return redirect('index')
+            return JsonResponse({"status": "success", "message": "Your message has been sent successfully. Thank you. I will get back to you soon."})
 
     else:
 

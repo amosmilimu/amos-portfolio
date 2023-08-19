@@ -148,30 +148,34 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-									<div class="services color-1">
-										<span class="icon2"><i class="icon-bulb"></i></span>
-										<h3>Graphic Design</h3>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-									<div class="services color-2">
-										<span class="icon2"><i class="icon-globe-outline"></i></span>
-										<h3>Web Design</h3>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInTop">
-									<div class="services color-3">
-										<span class="icon2"><i class="icon-data"></i></span>
-										<h3>Software</h3>
-									</div>
-								</div>
 								<div class="col-md-3 animate-box" data-animate-effect="fadeInBottom">
 									<div class="services color-4">
 										<span class="icon2"><i class="icon-phone3"></i></span>
-										<h3>Application</h3>
+										<h3>Mobile App Development</h3>
 									</div>
 								</div>
+
+								<div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+									<div class="services color-2">
+										<span class="icon2"><i class="icon-globe-outline"></i></span>
+										<h3>Web Backend Engineering</h3>
+									</div>
+								</div>
+
+								<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
+									<div class="services color-1">
+										<span class="icon2"><i class="icon-bulb"></i></span>
+										<h3>Project Management</h3>
+									</div>
+								</div>
+
+								<div class="col-md-3 animate-box" data-animate-effect="fadeInTop">
+									<div class="services color-3">
+										<span class="icon2"><i class="icon-data"></i></span>
+										<h3>Database Administration</h3>
+									</div>
+								</div>
+							
 							</div>
 							<div class="row">
 								<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
@@ -389,7 +393,7 @@
 						<div class="col-md-7 col-md-push-1">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
-									<form action="{% url 'index' %}" method="post">
+									<form id="contact-form" action="{% url 'index' %}" method="post">
 										{% csrf_token %}
 										<div class="form-group">
 											<input type="text" class="form-control" placeholder="Name" name="name" required>
@@ -404,26 +408,6 @@
 											<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
 										</div>
 
-										<div>
-
-											{% if messages %}
-											{% for message in messages %}
-												<div class="alert alert-{{ message.tags }}">
-													{{ message }}
-												</div>
-											{% endfor %}
-											{% endif %}
-											<!-- {% if error != '' %}
-												<div class="alert alert-danger">
-													{{ error }}
-												</div>
-											{% elif success != '' %}
-												<div class="alert alert-success">
-													{{ success }}
-												</div>
-											{% endif %} -->
-										</div>
-
 										<div class="form-group">
 											<input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
 										</div>
@@ -436,9 +420,59 @@
 				</div>
 			</section>
 
+			<div id="messageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 9999;">
+				<div style="position: relative; width: 300px; margin: 15% auto; padding: 20px; background: #fff; border-radius: 10px;">
+					<!-- Icon -->
+					<div style="padding-top:50.000%;position:relative;"><iframe src="https://gifer.com/embed/7efs" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen></iframe></div>
+					
+					<!-- Content -->
+					<div id="modalContent" style="text-align: center; margin-bottom: 20px; font-size: 16px;">
+						<!-- Success or error message goes here -->
+					</div>
+					
+					<!-- Button -->
+					<div style="text-align: center;">
+						<button id="modalCloseBtn" style="background-color: #4CAF50; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px; cursor: pointer;">OK</button>
+					</div>
+				</div>
+			</div>
+
 		</div><!-- end:colorlib-main -->
 	</div><!-- end:container-wrap -->
 	</div><!-- end:colorlib-page -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+			$(document).ready(function() {
+				$("#contact-form").on("submit", function(e) {
+					e.preventDefault();
+					$.ajax({
+						url: $(this).attr('action'),
+						method: $(this).attr('method'),
+						data: $(this).serialize(),
+						success: function(response) {
+							// Display the response message in the modal
+							$("#modalContent").html(response.message);
+							$("#messageModal").fadeIn(300);
+
+							// Clear the form fields if the submission was successful
+							if (response.status === "success") {
+								$("#contact-form")[0].reset();
+							}
+						},
+						error: function(error) {
+							$("#modalContent").html('There was an error processing your request.');
+							$("#messageModal").fadeIn(300);
+						}
+					});
+				});
+
+				$("#modalCloseBtn").click(function() {
+					$("#messageModal").fadeOut(300);
+					// Scroll to the top of the page
+					window.scrollTo(0, 0);
+				});
+			});
+		</script>
 
 	<!-- jQuery -->
 	<script src="{% static 'portfolio/js/jquery.min.js' %}"></script>
