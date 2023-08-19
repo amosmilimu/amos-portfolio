@@ -101,7 +101,9 @@
 					   					<div class="desc">
 						   					<h1>Hi! <br>I'm Amos</h1>
 						   					<h2>A problem solver, </h2>
-												<p><a class="btn btn-primary btn-learn">Download CV <i class="icon-download4"></i></a></p>
+												{% if cv.url != '' and cv.url != None %}
+												<p><a class="btn btn-primary btn-learn" href="{{ cv.url }}" target="_blank" >Download CV <i class="icon-download4"></i></a></p>
+												{% endif %}
 											</div>
 					   				</div>
 					   			</div>
@@ -117,7 +119,9 @@
 					   					<div class="desc">
 						   					<h1>A<br>Software Engineer</h1>
 												<h2>and a great leader.</h2>
-												<p><a class="btn btn-primary btn-learn">Download CV <i class="icon-download4"></i></a></p>
+												{% if cv.url != '' and cv.url != None %}
+												<p><a class="btn btn-primary btn-learn" href="{{ cv.url }}" target="_blank">Download CV <i class="icon-download4"></i></a></p>
+												{% endif %}
 											</div>
 					   				</div>
 					   			</div>
@@ -360,7 +364,7 @@
 									<i class="icon-globe-outline"></i>
 								</div>
 								<div class="colorlib-text">
-									<p><a href="#">amosmilimu@gmail.com</a></p>
+									<p><a href="mailto:amosmilimu@gmail.com">amosmilimu@gmail.com</a></p>
 								</div>
 							</div>
 
@@ -385,19 +389,33 @@
 						<div class="col-md-7 col-md-push-1">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
-									<form action="">
+									<form action="{% url 'index' %}" method="post">
+										{% csrf_token %}
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name">
+											<input type="text" class="form-control" placeholder="Name" name="name">
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Email">
+											<input type="text" class="form-control" placeholder="Email" name="email">
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Subject">
+											<input type="text" class="form-control" placeholder="Subject" name="subject">
 										</div>
 										<div class="form-group">
-											<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+											<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
 										</div>
+
+										<div>
+											{% if error != '' %}
+												<div class="alert alert-danger">
+													{{ error }}
+												</div>
+											{% elif success != '' %}
+												<div class="alert alert-success">
+													{{ success }}
+												</div>
+											{% endif %}
+										</div>
+
 										<div class="form-group">
 											<input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
 										</div>

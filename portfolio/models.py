@@ -37,6 +37,7 @@ class Blog(models.Model):
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
+    subject = models.CharField(max_length=100)
     message = models.CharField(max_length=250)
 
     def __str__(self):
@@ -57,6 +58,13 @@ class Experience(models.Model):
     date = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
     fade = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+    
+class CV(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.URLField(blank=True)
 
     def __str__(self):
         return self.title
