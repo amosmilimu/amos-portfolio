@@ -1,0 +1,147 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Xtra Blog</title>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="{% static 'portfolio/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'portfolio/css/templatemo-xtra-blog.css' %}" rel="stylesheet">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'portfolio/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'portfolio/css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'portfolio/css/bootstrap.css' %}">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'portfolio/css/flexslider.css' %}">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="{% static 'portfolio/fonts/flaticon/font/flaticon.css' %}">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'portfolio/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'portfolio/css/owl.theme.default.min.css' %}">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+<!--
+    
+TemplateMo 553 Xtra Blog
+
+https://templatemo.com/tm-553-xtra-blog
+
+-->
+</head>
+<body>
+    <div class="container-fluid">
+        <main class="tm-main">
+                     
+            <div class="row tm-row">
+                <div class="col-12">
+                    <img src="{{ blog.image.url }}" class="img-responsive" alt="Image"/>
+                </div>
+            </div>
+            <div class="row tm-row">
+                <div class="col-lg-8 tm-post-col">
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">{{ blog.title }}</h2>
+                            <p class="tm-mb-40">{{ blog.dateCreated|date:"Y, M d" }} | {{ blog.category }} | <i class="icon-eye"></i> {{ blog.views }}</p>
+                            <p>
+                                {{ blog.description }}
+                            </p>
+                        
+                        </div>
+                        
+                        <!-- Comments --> 
+                        <!-- <div>
+                            <h2 class="tm-color-primary tm-post-title">Comments</h2>
+                            <hr class="tm-hr-primary tm-mb-45">
+                            <div class="tm-comment tm-mb-45">
+                                <figure class="tm-comment-figure">  //TODO: Add comments
+                                    <img src="img/comment-1.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+                                    <figcaption class="tm-color-primary text-center">Mark Sonny</figcaption>
+                                </figure>
+                                <div>
+                                    <p>
+                                        Praesent aliquam ex vel lectus ornare tritique. Nunc et eros
+                                        quis enim feugiat tincidunt et vitae dui. Nullam consectetur
+                                        justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus 
+                                        sapien vel, euismod turpis.
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="#" class="tm-color-primary">REPLY</a>
+                                        <span class="tm-color-primary">June 14, 2020</span>
+                                    </div>                                                 
+                                </div>                                
+                            </div>
+                            <div class="tm-comment-reply tm-mb-45">
+                                <hr>
+                                <div class="tm-comment">
+                                    <figure class="tm-comment-figure">
+                                        <img src="img/comment-2.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+                                        <figcaption class="tm-color-primary text-center">Jewel Soft</figcaption>    
+                                    </figure>
+                                    <p>
+                                        Nunc et eros quis enim feugiat tincidunt et vitae dui.
+                                        Nullam consectetur justo ac ex laoreet rhoncus. Nunc
+                                        id leo pretium, faucibus sapien vel, euismod turpis.
+                                    </p>
+                                </div>                                
+                                <span class="d-block text-right tm-color-primary">June 21, 2020</span>
+                            </div>
+                            <form action="" class="mb-5 tm-comment-form">
+                                <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
+                                <div class="mb-4">
+                                    <input class="form-control" name="name" type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <input class="form-control" name="email" type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <textarea class="form-control" name="message" rows="6"></textarea>
+                                </div>
+                                <div class="text-right">
+                                    <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>                        
+                                </div>                                
+                            </form>                          
+                        </div> -->
+                    </div>
+                </div>
+                <aside class="col-lg-4 tm-aside-col">
+                    <div class="tm-post-sidebar">
+                        <hr class="mb-3 tm-hr-primary">
+                        <h2 class="tm-mb-40 tm-post-title color-2">Other Posts</h2>
+                        {% for blog1 in blogs %}
+                        {% if blog1.id != blog.id %}
+                        <a href="{% url 'details' blog1.id %}" class="d-block tm-mb-40">
+                            <div class="tm-post-item">
+                                <div class="tm-post-image">
+                                    <img src="{{ blog1.image.url }}" alt="Image" class="img-fluid" style="max-height: 50px; max-width: 50px;">
+                                </div>
+                                <div class="tm-post-description">
+                                    <p class="tm-color-primary">{{ blog1.title }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </aside>
+            </div>
+            
+        </main>
+    </div>
+    <script src="{% static 'portfolio/js/jquery.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/templatemo-script.js' %}"></script>
+</body>
+</html>

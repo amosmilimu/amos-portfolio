@@ -327,21 +327,21 @@
 						{% for blog in blogs %}
 						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
 							<div class="blog-entry">
-								<a href="#" class="blog-img"><img src="{{ blog.image }}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
+								<a href="{% url 'details' blog.id %}" class="blog-img"><img src="{{ blog.image.url }}" class="img-responsive" alt="default tag"></a>
 								<div class="desc">
 									<span><small> {{ blog.dateCreated|date:"Y, M d" }} </small> | <small> {{ blog.category }} </small> | <small> <i class="icon-eye"></i> {{ blog.views }}</small></span>
-									<h3><a href="blog.html">{{ blog.title }}</a></h3>
+									<h3><a href="{% url 'details' blog.id %}">{{ blog.title }}</a></h3>
 									<p>{{ blog.description }}</p>
 								</div>
 							</div>
 						</div>
 						{% endfor %}
 					</div>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-12 animate-box">
-							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
+							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p> TODO Activate on pagination
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</section>
 

@@ -11,3 +11,9 @@ def index(request):
     experiences = Experience.objects.all()
     context = {'projects':projects, 'skills':skills, 'blogs':blogs, 'educations':educations, 'experiences':experiences}
     return render(request,'portfolio/index.html', context)
+
+def details(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    blogs = Blog.objects.all()
+    context = {'blog':blog, 'blogs':blogs}
+    return render(request,'portfolio/details.html', context)
