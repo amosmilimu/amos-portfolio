@@ -8,7 +8,7 @@
 	<title>Amos Ahindukha</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+	<meta name="keywords" content="amos, ahindukha, developer, engineer, software, mobile, web" />
 	<meta name="author" content="" />
 
   <!-- Facebook and Twitter integration -->
@@ -148,33 +148,15 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInBottom">
-									<div class="services color-4">
-										<span class="icon2"><i class="icon-phone3"></i></span>
-										<h3>Mobile App Development</h3>
+							
+								{% for generalSkill in generalSkills %}
+								<div class="col-md-3 animate-box" data-animate-effect="{{ generalSkill.fade }}">
+									<div class="services {{ generalSkill.color }}">
+										<span class="icon2"><i class="{{ generalSkill.icon }}"></i></span>
+										<h3>{{ generalSkill.title }}</h3>
 									</div>
 								</div>
-
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-									<div class="services color-2">
-										<span class="icon2"><i class="icon-globe-outline"></i></span>
-										<h3>Web Backend Engineering</h3>
-									</div>
-								</div>
-
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-									<div class="services color-1">
-										<span class="icon2"><i class="icon-bulb"></i></span>
-										<h3>Project Management</h3>
-									</div>
-								</div>
-
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInTop">
-									<div class="services color-3">
-										<span class="icon2"><i class="icon-data"></i></span>
-										<h3>Database Administration</h3>
-									</div>
-								</div>
+								{% endfor %}
 							
 							</div>
 							<div class="row">
