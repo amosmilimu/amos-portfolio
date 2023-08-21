@@ -5,8 +5,8 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='portfolio/media/', null=True, blank=True)
-    icon = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='portfolio/media/', default='portfolio/media/placeholder.png')
+    icon = models.CharField(max_length=100, null=True, blank=True)
     color = models.CharField(max_length=100)
     url = models.URLField(blank=True, null=True)
     priority = models.IntegerField(default=0)
