@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import Project, Skill, Blog, Education, Experience, Contact, CV, GeneralSkill
+from .models import Project, Skill, Blog, Education, Experience, Contact, CV, GeneralSkill, YearsOfExperience
 
 # Create your views here.
 
@@ -12,11 +12,16 @@ def index(request):
     educations = Education.objects.all().order_by('-priority')
     experiences = Experience.objects.all().order_by('-priority')
     generalSkills = GeneralSkill.objects.all().order_by('-priority')
+    if YearsOfExperience.objects.all():
+        yearsOfExperience = YearsOfExperience.objects.all()[0]
+    else:
+        yearsOfExperience = YearsOfExperience( years=5 )
+
     if CV.objects.all():
         cv = CV.objects.all()[0]
     else:
         cv = None
-    context = {'projects':projects, 'skills':skills, 'blogs':blogs, 'educations':educations, 'experiences':experiences, 'cv':cv, 'generalSkills':generalSkills}
+    context = {'projects':projects, 'skills':skills, 'blogs':blogs, 'educations':educations, 'experiences':experiences, 'cv':cv, 'generalSkills':generalSkills, 'yearsOfExperience':yearsOfExperience}
 
     if request.method == 'POST':
         name = request.POST['name']

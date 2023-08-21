@@ -84,3 +84,9 @@ class GeneralSkill(models.Model):
 
     def __str__(self):
         return self.title
+    
+class YearsOfExperience(models.Model):
+    years = models.IntegerField(default=6)
+
+    def __str__(self):
+        return str(self.years) + " years"
