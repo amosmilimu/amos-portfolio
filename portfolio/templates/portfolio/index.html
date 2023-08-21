@@ -44,6 +44,29 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+	<style>
+        .small-card {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .small-card img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10%;
+        }
+    </style>
+
 	<!-- Modernizr JS -->
 	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
 	<!-- FOR IE9 below -->
@@ -184,9 +207,9 @@
 						{% for project in projects %}
 						<div class="col-md-4 text-center animate-box">
 							<div class="services {{ project.color }}">
-								<span class="icon">
-									<i class="{{ project.icon }}"></i>
-								</span>
+								<div class="small-card {{ project.color }}">
+									<img src="{{ project.image.url }}" alt="{{ project.title }}">
+								</div>
 								<div class="desc">
 									<a href="{{ project.url }}" target="_blank"><h3>{{ project.title }}</h3></a>
 									<p>{{ project.description }}</p>
