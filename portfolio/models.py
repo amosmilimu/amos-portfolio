@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 
 
@@ -26,7 +27,8 @@ class Skill(models.Model):
     
 class Blog(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    short_description = models.TextField()
+    description = HTMLField()
     category = models.CharField(max_length=100)
     views = models.IntegerField(default=0)
     image = models.ImageField(upload_to='portfolio/media/', default='portfolio/media/img_bg_3.jpg')

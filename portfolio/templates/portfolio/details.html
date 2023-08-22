@@ -57,7 +57,7 @@ https://templatemo.com/tm-553-xtra-blog
                             <h2 class="pt-2 tm-color-primary tm-post-title">{{ blog.title }}</h2>
                             <p class="tm-mb-40">{{ blog.dateCreated|date:"Y, M d" }} | {{ blog.category }} | <i class="icon-eye"></i> {{ blog.views }}</p>
                             <p>
-                                {{ blog.description }}
+                                {{ blog.description|safe }}
                             </p>
                         
                         </div>
