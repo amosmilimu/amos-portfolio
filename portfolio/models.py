@@ -50,6 +50,9 @@ class Education(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     url = models.URLField(blank=True)
+    header_class = models.CharField(max_length=100, null=True, blank=True)
+    collapse = models.CharField(max_length=100, default="collapse in")
+    collapse_count = models.CharField(max_length=100)
     priority = models.IntegerField(default=0)
 
     def __str__(self):
