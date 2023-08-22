@@ -344,7 +344,7 @@
 								<div class="desc">
 									<span><small> {{ blog.dateCreated|date:"Y, M d" }} </small> | <small> {{ blog.category }} </small> | <small> <i class="icon-eye"></i> {{ blog.views }}</small></span>
 									<h3><a href="{% url 'details' blog.id %}">{{ blog.title }}</a></h3>
-									<p>{{ blog.short_description|truncatechars:100}}</p>
+									<p>{{ blog.short_description|truncatechars:100|safe }}</p>
 								</div>
 							</div>
 						</div>
