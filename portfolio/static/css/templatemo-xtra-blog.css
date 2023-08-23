@@ -601,3 +601,32 @@ a:hover figcaption { color: #056767; }
 @media (max-width: 380px) {
     .tm-person img { max-width: 120px; }
 }
+
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #e2e8ee; /* Button background color */
+    color: rgb(3, 1, 13); /* Button text color */
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow */
+    align-items: center; 
+}
+
+/* Add a hover effect */
+.fab:hover {
+    background-color: #cddff4; /* Change background color on hover */
+    color: rgb(6, 54, 58);
+}
+
+.icon-home {
+    color: rgb(22, 4, 76);
+}
+
