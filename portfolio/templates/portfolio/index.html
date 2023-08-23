@@ -65,6 +65,11 @@
             max-height: 100%;
             border-radius: 10%;
         }
+
+		.experience-header {
+			color: grey; /* Set the text color to grey */
+		}
+
     </style>
 
 	<!-- Modernizr JS -->
@@ -310,7 +315,8 @@
 
 								  <div class="timeline-label">
 									 <h2><a href="#">{{ experience.title }}</a> <span>{{ experience.date }}</span></h2>
-								`	 <p>{{ experience.description }}</p>
+									 <h4 class="experience-header">{{ experience.company }}</h4>
+									 <p>{{ experience.description }}</p>
 								  </div>
 							   </div>
 							</article>

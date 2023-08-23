@@ -63,6 +63,7 @@ class Education(models.Model):
 class Experience(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
+    company = models.CharField(max_length=100)
     icon = models.CharField(max_length=100)
     date = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
